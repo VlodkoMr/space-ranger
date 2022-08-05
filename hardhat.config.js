@@ -1,6 +1,4 @@
-// require("@nomiclabs/hardhat-ethers");
-// require("@openzeppelin/hardhat-upgrades");
-// require("@nomiclabs/hardhat-etherscan");
+require("@nomicfoundation/hardhat-toolbox");
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
