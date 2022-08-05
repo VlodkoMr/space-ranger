@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ```
 nodeJS
-yarn
+npm
 ```
 
 ### Installing
@@ -18,27 +18,24 @@ yarn
 Install dependencies and create environment file:
 
 ```
-yarn install
+npm install
 cp .env.sample .env
 ```
 
-Fill environment variables in files:
-
-- .env
-- .env.localhost
+Fill environment variables in .env file
 
 ### Build & Deploy
 
 ```
-yarn deploy
-yarn start
+npm run deploy
+npm run start
 ```
 
 ## Production
 
 ```
-yarn deploy:polygon
-yarn build:polygon
+npm run deploy:polygon
+npm run build:polygon
 ```
 
 - Update CONTRACT_PROXY in src/backend/scripts/update.polygon.js
@@ -48,11 +45,11 @@ yarn build:polygon
 ### Verify Smart Contract
 
 ```
-yarn verify:polygon
+npm run verify:polygon
 ```
 
 ### Update Smart Contract
 
 ```
-yarn update:polygon
+npm run update:polygon
 ```

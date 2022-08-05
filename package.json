@@ -8,9 +8,9 @@
     "compile": "npx hardhat compile",
     "console": "npx hardhat console --network localhost",
     "deploy": "env $(cat .env) npx hardhat run scripts/deploy.js --network localhost",
-    "update": "env $(cat .env) npx hardhat run scripts/upgrade.js --network localhost",
-    "deploy:dev:mumbai": "env $(cat .env) npx hardhat run scripts/deploy.js --network mumbai_testnet",
-    "update:dev:mumbai": "env $(cat .env) npx hardhat run scripts/upgrade.mumbai.js --network mumbai_testnet"
+    "update": "env $(cat .env) npx hardhat run ./scripts/upgrade.js --network localhost",
+    "deploy:dev:mumbai": "env $(cat .env) npx hardhat run ./scripts/deploy.js --network mumbai_testnet",
+    "update:dev:mumbai": "env $(cat .env) npx hardhat run ./scripts/upgrade.mumbai.js --network mumbai_testnet"
   },
   "author": "Vlodkow",
   "license": "MIT",

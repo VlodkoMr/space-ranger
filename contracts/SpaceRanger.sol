@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.8.12;
+pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol";
@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "./Utils.sol";
 
-contract SpaceRanger is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
+contract SpaceRanger is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable, Utils {
 	using Counters for Counters.Counter;
 	Counters.Counter private tokenIdCounter;
 
@@ -25,23 +25,24 @@ contract SpaceRanger is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 		uint8 attack; // 10-50
 		uint8 weapons; // 1-4
 		uint8 level; // 1-3
+		uint8 modification; // ship type
 		bool onSale;
-		uint sellPrice;
+		uint salePrice;
 	}
 
-	constructor(string memory _shipHashIPFS) ERC721("SpaceRanger", "SPR") {
+	constructor(string memory _shipHashIPFS) ERC721('SpaceRanger', 'SPR') {
 		shipHashIPFS = _shipHashIPFS;
 	}
 
 	function safeMint(address _account) public {
-		require(userShips[_account].length == 0, "You already mint free Space Ship");
+		require(userShips[_account].length == 0, 'You already mint free Space Ship');
 
 		// Check ships limitation
 		uint256 _tokenId = tokenIdCounter.current();
-		require(_tokenId <= SHIPS_LIMIT, "Sorry, you can't get new SpaceShip. No more ships in our space station.");
+		require(_tokenId <= SHIPS_LIMIT, 'Sorry, you can\'t get new SpaceShip. No more ships in our space station.');
 
-		uint _shipType = Utils.randomNumber(4) + 1;
-		string memory _uri = string.concat(shipHashIPFS, "/", StringsUpgradeable.toString(_shipType), "-1.png");
+		uint8 _shipType = uint8(randomNumber(4) + 1);
+		string memory _uri = string(abi.encodePacked(shipHashIPFS, '/', StringsUpgradeable.toString(_shipType), '-1.png'));
 
 		tokenIdCounter.increment();
 		_safeMint(_account, _tokenId);
