@@ -2,7 +2,7 @@
   "name": "space-ranger",
   "version": "0.0.1",
   "description": "NFT Game",
-  "main": "index.js",
+  "private": false,
   "scripts": {
     "local": "npx hardhat node",
     "compile": "npx hardhat compile",
@@ -18,7 +18,8 @@
     "@openzeppelin/contracts": "^4.7.2",
     "@openzeppelin/contracts-upgradeable": "^4.7.2",
     "@openzeppelin/hardhat-upgrades": "^1.19.1",
-    "hardhat": "^2.10.1"
+    "hardhat": "^2.10.1",
+    "process": "^0.11.10"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^1.0.2"
