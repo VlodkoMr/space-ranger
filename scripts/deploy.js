@@ -11,8 +11,8 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  const Token = await ethers.getContractFactory("SpaceGame");
-  const token = await Token.deploy();
+  const Token = await ethers.getContractFactory("SpaceRanger");
+  const token = await Token.deploy(["https://ipfs.io/ipfs/..."]);
   await token.deployed();
 
   console.log("Token address:", token.address);
@@ -30,14 +30,14 @@ function saveFrontendFiles(token) {
   }
 
   fs.writeFileSync(
-    path.join(contractsDir, "SpaceGame-address.json"),
+    path.join(contractsDir, "SpaceRanger-address.json"),
     JSON.stringify({ Token: token.address }, undefined, 2)
   );
 
-  const TokenArtifact = artifacts.readArtifactSync("SpaceGame");
+  const TokenArtifact = artifacts.readArtifactSync("SpaceRanger");
 
   fs.writeFileSync(
-    path.join(contractsDir, "SpaceGame.json"),
+    path.join(contractsDir, "SpaceRanger.json"),
     JSON.stringify(TokenArtifact, null, 2)
   );
 }
