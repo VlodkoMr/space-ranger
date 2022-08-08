@@ -12,7 +12,7 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   const Token = await ethers.getContractFactory("SpaceRanger");
-  const token = await Token.deploy("https://ipfs.io/ipfs/...");
+  const token = await Token.deploy();
   await token.deployed();
 
   console.log("Token address:", token.address);

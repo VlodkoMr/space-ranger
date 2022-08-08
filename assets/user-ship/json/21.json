@@ -1,0 +1,23 @@
+{
+  "name": "Polaris V1",
+  "description": "Polaris Spaceship - modification #1",
+  "image": "https://bafybeih2oh2qvjnptpqsmbxn64ncw6a74mjahotjk6cjjx732eqnpjcxou.ipfs.nftstorage.link/21.png",
+  "attributes": [
+    {
+      "trait_type": "Health",
+      "value": "25"
+    },
+    {
+      "trait_type": "Attack",
+      "value": "10"
+    },
+    {
+      "trait_type": "Speed",
+      "value": "6"
+    },
+    {
+      "trait_type": "Weapons",
+      "value": "1"
+    }
+  ],
+}

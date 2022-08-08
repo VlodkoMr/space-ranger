@@ -1,0 +1,23 @@
+{
+  "name": "Niagara V1",
+  "description": "Niagara Spaceship - modification #1",
+  "image": "https://bafybeih2oh2qvjnptpqsmbxn64ncw6a74mjahotjk6cjjx732eqnpjcxou.ipfs.nftstorage.link/31.png",
+  "attributes": [
+    {
+      "trait_type": "Health",
+      "value": "21"
+    },
+    {
+      "trait_type": "Attack",
+      "value": "7"
+    },
+    {
+      "trait_type": "Speed",
+      "value": "4"
+    },
+    {
+      "trait_type": "Weapons",
+      "value": "2"
+    }
+  ],
+}

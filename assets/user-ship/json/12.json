@@ -1,0 +1,23 @@
+{
+  "name": "Spectrum V2",
+  "description": "Spectrum Spaceship - modification #2",
+  "image": "https://bafybeih2oh2qvjnptpqsmbxn64ncw6a74mjahotjk6cjjx732eqnpjcxou.ipfs.nftstorage.link/12.png",
+  "attributes": [
+    {
+      "trait_type": "Health",
+      "value": "40"
+    },
+    {
+      "trait_type": "Attack",
+      "value": "15"
+    },
+    {
+      "trait_type": "Speed",
+      "value": "6"
+    },
+    {
+      "trait_type": "Weapons",
+      "value": "2"
+    }
+  ],
+}

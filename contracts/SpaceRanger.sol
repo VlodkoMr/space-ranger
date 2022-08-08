@@ -1,23 +1,18 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
-import "./Utils.sol";
 
-contract SpaceRanger is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable, Utils {
-	using Counters for Counters.Counter;
-	Counters.Counter private tokenIdCounter;
+contract SpaceRanger is ERC1155, Ownable {
+	uint public constant SHIPS_TYPE_SUPPLY = 1000;
+	uint16[] public mintedShips = [0, 0, 0, 0, 0];
+	uint public totalMintedShips = 0;
 
-	uint constant SHIPS_LIMIT = 5000;
-	string shipHashIPFS;
-	mapping(address => uint) userScores; // total scores
-	mapping(address => uint) userLastLevel; // last planet discovered by user
-	mapping(address => Ship[]) userShips;
+	mapping(address => uint) public userScores; // total scores
+	mapping(address => uint) public userLevel; // last planet discovered by user
+	mapping(address => Ship[]) public userShips;
 
 	struct Ship {
 		uint id;
@@ -25,71 +20,68 @@ contract SpaceRanger is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable, Uti
 		uint8 attack; // 10-50
 		uint8 weapons; // 1-4
 		uint8 level; // 1-3
-		uint8 modification; // ship type
+		uint8 shipType;
 		bool onSale;
 		uint salePrice;
 	}
 
-	constructor(string memory _shipHashIPFS) ERC721('SpaceRanger', 'SPR') {
-		shipHashIPFS = _shipHashIPFS;
+
+// https://bafybeiept7dnqz4755bx4kg5zq6df6cqi3u5bfadjsr32wnx3z7ij2e3nm.ipfs.nftstorage.link/1-1.png
+	constructor() ERC1155("https://bafybeiept7dnqz4755bx4kg5zq6df6cqi3u5bfadjsr32wnx3z7ij2e3nm.ipfs.nftstorage.link/{id}.json") {}
+
+	function uri(uint _tokenId) override public pure returns (string memory){
+		return string(
+			abi.encodePacked(
+				"https://ipfs.io/ipfs/bafybeiept7dnqz4755bx4kg5zq6df6cqi3u5bfadjsr32wnx3z7ij2e3nm/",
+				Strings.toString(_tokenId),
+				".json"
+			)
+		);
 	}
 
-	function safeMint(address _account) public {
-		require(userShips[_account].length == 0, 'You already mint free Space Ship');
+	function setURI(string memory _uri) public onlyOwner {
+		_setURI(_uri);
+	}
 
-		// Check ships limitation
-		uint256 _tokenId = tokenIdCounter.current();
-		require(_tokenId <= SHIPS_LIMIT, 'Sorry, you can\'t get new SpaceShip. No more ships in our space station.');
+	function mint(uint8 _shipTypeId) public {
+		require(_shipTypeId < mintedShips.length, "SpaceShip doesn't exists");
+		require(_shipTypeId > 0, "Wrong SpaceShip ID");
+		require(userShips[msg.sender].length == 0, "You already have SpaceShip");
 
-		uint8 _shipType = uint8(randomNumber(4) + 1);
-		string memory _uri = string(abi.encodePacked(shipHashIPFS, '/', StringsUpgradeable.toString(_shipType), '-1.png'));
+		uint8 _shipTypeIndex = _shipTypeId - 1;
+		require(mintedShips[_shipTypeIndex] < SHIPS_TYPE_SUPPLY, "No more ships of this modification in our station.");
 
-		tokenIdCounter.increment();
-		_safeMint(_account, _tokenId);
-		_setTokenURI(_tokenId, _uri);
+		uint _id = ++totalMintedShips;
+		_mint(msg.sender, _id, 1, "");
+		mintedShips[_shipTypeIndex] += 1;
 
 		Ship memory _newShip = Ship({
-		id : _tokenId,
+		id : _id,
 		health : 25,
 		attack : 10,
 		weapons : 1,
 		level : 1,
-		modification : _shipType,
+		shipType : _shipTypeId,
 		onSale : false,
 		salePrice : 0
 		});
-		userShips[_account].push(_newShip);
+		userShips[msg.sender].push(_newShip);
 	}
 
-	// The following functions are overrides required by Solidity.
+	function getUserShips(address _owner) public view returns (Ship[] memory){
+		Ship[] memory _result = new Ship[](userShips[_owner].length);
+		for (uint _i = 0; _i < userShips[_owner].length; ++_i) {
+			_result[_i] = userShips[_owner][_i];
+		}
+		return _result;
+	}
 
-	function _beforeTokenTransfer(address from, address to, uint256 tokenId)
+	function _beforeTokenTransfer(address operator, address from, address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data)
 	internal
-	override(ERC721, ERC721Enumerable)
+	override(ERC1155)
 	{
-		super._beforeTokenTransfer(from, to, tokenId);
+		super._beforeTokenTransfer(operator, from, to, ids, amounts, data);
 	}
 
-	function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
-		super._burn(tokenId);
-	}
-
-	function tokenURI(uint256 tokenId)
-	public
-	view
-	override(ERC721, ERC721URIStorage)
-	returns (string memory)
-	{
-		return super.tokenURI(tokenId);
-	}
-
-	function supportsInterface(bytes4 interfaceId)
-	public
-	view
-	override(ERC721, ERC721Enumerable)
-	returns (bool)
-	{
-		return super.supportsInterface(interfaceId);
-	}
 }
 
