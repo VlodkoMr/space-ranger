@@ -13,13 +13,13 @@ libs:
   random: {}
   ct.web3:
     undefined: ''
-    chain: mumbai-testnet
+    chain: none
     customChain: true
     chainId: '31337'
-    chainName: HardHat Local
-    chainRPC: 'http://localhost:8545'
+    chainName: Hardhat Local
+    chainRPC: 'http://127.0.0.1:8545/'
     blockExplorerUrl: ''
-    currencySymbol: Matic
+    currencySymbol: MATIC
     currencyDecimals: 18
     contractAddress: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
     contractABI: |-
@@ -770,7 +770,7 @@ textures:
     uid: Rj4DG4dn331mK1
     padding: 1
     group: t5HJWqFJjWggNR
-  - lastmod: 1659967168603
+  - lastmod: 1660073132284
     type: texture
     name: '11'
     untill: 0
@@ -1262,7 +1262,7 @@ textures:
     padding: 1
     group: D99LNkJ1kGKQm6
     source: /Users/vlodkow/www/space-ranger/assets/user-ship/images/53.png
-  - lastmod: 1659972753553
+  - lastmod: 1660059183989
     type: texture
     name: Connect-Metamask-button
     untill: 0
@@ -1328,7 +1328,7 @@ textures:
     bottom: 162
     uid: drJMG8qR67Gb69
     padding: 1
-    group: !<tag:yaml.org,2002:js/undefined> ''
+    group: t95cWTDcJrFPG7
     source: /Users/vlodkow/Downloads/space-ranger-logo.png
   - lastmod: 1660046022225
     type: texture
@@ -1681,6 +1681,263 @@ textures:
     padding: 1
     group: qch1fMG1jPKLCD
     source: /Users/vlodkow/Downloads/spaceshooter (1)/Backgrounds/blue.png
+  - lastmod: 1660062717784
+    type: texture
+    name: Connect-Metamask-hover
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 200
+      - 63
+    marginx: 0
+    marginy: 0
+    imgWidth: 400
+    imgHeight: 126
+    width: 400
+    height: 126
+    offx: 0
+    offy: 0
+    origname: iRDFLpLTNKW1C35.png
+    shape: rect
+    left: 200
+    right: 200
+    top: 63
+    bottom: 63
+    uid: RDFLpLTNKW1C35
+    padding: 1
+    group: t5HJWqFJjWggNR
+    source: /Users/vlodkow.mr/Downloads/Connect-Metamask-hover.png
+  - lastmod: 1660071808835
+    type: texture
+    name: game-info
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 636
+      - 216
+    marginx: 0
+    marginy: 0
+    imgWidth: 1273
+    imgHeight: 432
+    width: 1273
+    height: 432
+    offx: 0
+    offy: 0
+    origname: i3ncwJ42TKc8bw3.png
+    shape: rect
+    left: 636
+    right: 637
+    top: 216
+    bottom: 216
+    uid: 3ncwJ42TKc8bw3
+    padding: 1
+    group: t95cWTDcJrFPG7
+    source: /Users/vlodkow.mr/Downloads/game-info.png
+  - lastmod: 1660072906909
+    type: texture
+    name: BgInventory
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 960
+      - 540
+    marginx: 0
+    marginy: 0
+    imgWidth: 1920
+    imgHeight: 1080
+    width: 1920
+    height: 1080
+    offx: 0
+    offy: 0
+    origname: ih568qk2j9hmTBN.jpg
+    shape: rect
+    left: 960
+    right: 960
+    top: 540
+    bottom: 540
+    uid: h568qk2j9hmTBN
+    padding: 1
+    group: qch1fMG1jPKLCD
+    source: >-
+      /Users/vlodkow.mr/Downloads/Assets Wenrexa UI Sci-Fi Minimalism
+      #01/СommonElement/Background.jpg
+    tiled: true
+  - lastmod: 1660076407697
+    type: texture
+    name: Ship5
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 675
+    imgHeight: 357
+    width: 675
+    height: 357
+    offx: 0
+    offy: 0
+    origname: iP1dgWCh3gznpMB.png
+    shape: rect
+    left: 0
+    right: 675
+    top: 0
+    bottom: 357
+    uid: P1dgWCh3gznpMB
+    padding: 1
+    group: D99LNkJ1kGKQm6
+    source: /Users/vlodkow.mr/Downloads/Ship5.png
+  - lastmod: 1660076407698
+    type: texture
+    name: Ship2
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 675
+    imgHeight: 357
+    width: 675
+    height: 357
+    offx: 0
+    offy: 0
+    origname: iJbmCz3Hf32TNNc.png
+    shape: rect
+    left: 0
+    right: 675
+    top: 0
+    bottom: 357
+    uid: JbmCz3Hf32TNNc
+    padding: 1
+    group: D99LNkJ1kGKQm6
+    source: /Users/vlodkow.mr/Downloads/Ship2.png
+  - lastmod: 1660076407699
+    type: texture
+    name: Ship4
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 675
+    imgHeight: 357
+    width: 675
+    height: 357
+    offx: 0
+    offy: 0
+    origname: ihGMWkk9m9G34bJ.png
+    shape: rect
+    left: 0
+    right: 675
+    top: 0
+    bottom: 357
+    uid: hGMWkk9m9G34bJ
+    padding: 1
+    group: D99LNkJ1kGKQm6
+    source: /Users/vlodkow.mr/Downloads/Ship4.png
+  - lastmod: 1660076426175
+    type: texture
+    name: Ship1
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 675
+    imgHeight: 357
+    width: 675
+    height: 357
+    offx: 0
+    offy: 0
+    origname: itbkH6mBNzh2Nmj.png
+    shape: rect
+    left: 0
+    right: 675
+    top: 0
+    bottom: 357
+    uid: tbkH6mBNzh2Nmj
+    padding: 1
+    group: D99LNkJ1kGKQm6
+    source: /Users/vlodkow.mr/Downloads/Ship1.png
+  - lastmod: 1660076407700
+    type: texture
+    name: Ship3
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 675
+    imgHeight: 357
+    width: 675
+    height: 357
+    offx: 0
+    offy: 0
+    origname: inJ28HC4zpTFcfm.png
+    shape: rect
+    left: 0
+    right: 675
+    top: 0
+    bottom: 357
+    uid: nJ28HC4zpTFcfm
+    padding: 1
+    group: D99LNkJ1kGKQm6
+    source: /Users/vlodkow.mr/Downloads/Ship3.png
+  - lastmod: 1660079324217
+    type: texture
+    name: TopMenu
+    untill: 0
+    grid:
+      - 1
+      - 1
+    axis:
+      - 0
+      - 0
+    marginx: 0
+    marginy: 0
+    imgWidth: 1087
+    imgHeight: 124
+    width: 1087
+    height: 124
+    offx: 0
+    offy: 0
+    origname: ihrp1ddqGBTNpgj.png
+    shape: rect
+    left: 0
+    right: 1087
+    top: 0
+    bottom: 124
+    uid: hrp1ddqGBTNpgj
+    padding: 1
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    source: >-
+      /Users/vlodkow.mr/Downloads/Assets Wenrexa UI Sci-Fi Minimalism
+      #01/СommonElement/TopMenu.png
 skeletons: []
 templates:
   - type: template
@@ -1821,9 +2078,9 @@ templates:
     oncreate: ''
     onstep: |
       if(ct.pointer.hovers(this)){
-          // this.tex = '';
+          this.tex = 'Connect-Metamask-hover';
       } else {
-
+          this.tex = 'Connect-Metamask-button';
       }
 
       if (ct.pointer.collides(this, undefined, true)) {
@@ -1851,6 +2108,7 @@ templates:
       cgroup: ''
     lastmod: 1659977644860
     uid: Qm2tR7JrmF8mDk
+    group: QNchmGQMmKJqJQ
   - type: template
     name: AsteroidBig1
     depth: 0
@@ -2089,11 +2347,141 @@ templates:
     lastmod: 1660051244153
     uid: zLrK7LQ9CzJ51z
     group: 6WDkpQz95HFRWW
+  - type: template
+    name: Connect-Metamask-hover
+    depth: 0
+    oncreate: ''
+    onstep: this.move();
+    ondraw: ''
+    ondestroy: ''
+    texture: RDFLpLTNKW1C35
+    visible: true
+    extends: {}
+    lastmod: 1660059130347
+    uid: r8rMcwWMgNPD9h
+    group: bc2Rd4mH9MRM2P
+  - type: template
+    name: game-info
+    depth: 0
+    oncreate: this.depth = 2;
+    onstep: this.move();
+    ondraw: ''
+    ondestroy: ''
+    texture: 3ncwJ42TKc8bw3
+    visible: true
+    extends: {}
+    lastmod: 1660071978289
+    uid: QNGBCRFLGTtw1K
+    group: QNchmGQMmKJqJQ
+  - type: template
+    name: ShipCard1
+    depth: 0
+    oncreate: ''
+    onstep: this.move();
+    ondraw: ''
+    ondestroy: ''
+    texture: tbkH6mBNzh2Nmj
+    visible: true
+    extends: {}
+    lastmod: 1660076446439
+    uid: fDqC7p8gwbr8Lt
+  - type: template
+    name: ShipCard2
+    depth: 0
+    oncreate: ''
+    onstep: this.move();
+    ondraw: ''
+    ondestroy: ''
+    texture: JbmCz3Hf32TNNc
+    visible: true
+    extends: {}
+    lastmod: 1660076480103
+    uid: CGQh2NGQQ33h1K
+  - type: template
+    name: ShipCard3
+    depth: 0
+    oncreate: ''
+    onstep: this.move();
+    ondraw: ''
+    ondestroy: ''
+    texture: nJ28HC4zpTFcfm
+    visible: true
+    extends: {}
+    lastmod: 1660076485187
+    uid: MjgBF1fjdCRw4D
+  - type: template
+    name: ShipCard4
+    depth: 0
+    oncreate: ''
+    onstep: this.move();
+    ondraw: ''
+    ondestroy: ''
+    texture: hGMWkk9m9G34bJ
+    visible: true
+    extends: {}
+    lastmod: 1660076497153
+    uid: bR74f99g1qG6J3
+  - type: template
+    name: ShipCard5
+    depth: 0
+    oncreate: ''
+    onstep: this.move();
+    ondraw: ''
+    ondestroy: ''
+    texture: P1dgWCh3gznpMB
+    visible: true
+    extends: {}
+    lastmod: 1660076504937
+    uid: CkT8t6L9HCNTFB
+  - type: template
+    name: TopMenu
+    depth: 0
+    oncreate: ''
+    onstep: this.move();
+    ondraw: ''
+    ondestroy: ''
+    texture: hrp1ddqGBTNpgj
+    visible: true
+    extends: {}
+    lastmod: 1660079354560
+    uid: cjtg8Tgjm7ccLg
 sounds: []
-styles: []
+styles:
+  - name: Title
+    uid: RKM7BTNTPh6G21
+    origname: sPh6G21
+    font:
+      family: '"CTPROJFONTExo2-Bold", "Exo2-Bold", sans-serif'
+      size: 36
+      weight: '600'
+      italic: false
+      halign: center
+      wrap: false
+    fill:
+      type: '0'
+      color: '#F7F7F7'
+    shadow:
+      color: 'rgba(0,0,0,0.26)'
+      x: 0
+      'y': 0
+      blur: 0
+    lastmod: 1660078823474
+  - name: Description
+    uid: FntDrM7NwrPJk1
+    origname: swrPJk1
+    font:
+      family: '"CTPROJFONTExo2-Medium", "Exo2-Medium", sans-serif'
+      size: 18
+      weight: '500'
+      italic: false
+      halign: center
+    lastmod: 1660080065747
+    fill:
+      type: '0'
+      color: '#00FA60'
 rooms:
   - type: room
-    oncreate: |-
+    oncreate: |
       this.asteroidTimer = 20;
 
       bgMoveInit(this);
@@ -2119,7 +2507,7 @@ rooms:
       // Asteroids
       this.asteroidTimer -= ct.delta;
       if (this.asteroidTimer <= 0) {
-          this.asteroidTimer = ct.random.range(45, 135);
+          this.asteroidTimer = ct.random.range(60, 180);
           ct.templates.copy(ct.random.dice('AsteroidBig1', 'AsteroidBig2', 'AsteroidBig3'), ct.random(ct.camera.width), -100);
       }
     ondraw: ''
@@ -2138,25 +2526,31 @@ rooms:
           shiftX: -184
           scaleY: 0.8
     copies:
-      - x: 672
-        'y': 624
+      - x: 684
+        'y': 570
         uid: 116C91L4CWJk13
         exts: {}
         tx: 0.5
         ty: 0.5
-      - x: 672
-        'y': 192
+      - x: 686.3478260869565
+        'y': 140.30434782608694
         uid: Qm2tR7JrmF8mDk
         exts: {}
-        tx: 0.7
-        ty: 0.7
+        tx: 0.55
+        ty: 0.55
+      - x: 680
+        'y': 392
+        uid: QNGBCRFLGTtw1K
+        exts: {}
+        tx: 0.5
+        ty: 0.5
     tiles:
       - depth: -10
         tiles: []
         extends: {}
     extends:
       isUi: true
-    lastmod: 1660053348568
+    lastmod: 1660073598298
     thumbnail: rMJ2hRjKRfGMFP
     uid: rMJ2hRjKRfGMFP
     restrictCamera: false
@@ -2234,94 +2628,102 @@ rooms:
         extends: {}
     extends:
       isUi: true
-    lastmod: 1660053360955
+    lastmod: 1660078506930
     thumbnail: Cntzc24PH2wfBm
     uid: Cntzc24PH2wfBm
   - type: room
-    oncreate: |-
+    oncreate: >-
       // Move Background
+
       bgMoveInit(this);
+
+
+      // Title
+
+      this.pageTitle = new PIXI.Text('Mint Spaceship NFT',
+      ct.styles.get('Title'));
+
+      this.addChild(this.pageTitle);
+
+      this.pageTitle.x = 510;
+
+      this.pageTitle.y = 50;
+
+      this.pageTitle.depth = 2;
+
+
+      // Description
+
+      this.pageTitle = new PIXI.Text('Select your spaceship and confirm
+      transaction. First spaceship you get for free (limited by 10
+      flights/day).', ct.styles.get('Description'));
+
+      this.addChild(this.pageTitle);
+
+      this.pageTitle.x = 230;
+
+      this.pageTitle.y = 130;
+
+      this.pageTitle.depth = 2;
     onstep: |-
       // Move Background
       bgMoveOnStep(this, 0.02);
     ondraw: ''
     onleave: ''
-    gridX: 24
-    gridY: 24
+    gridX: 64
+    gridY: 64
     width: 1366
     height: 768
     name: SpaceStation
     backgrounds:
-      - depth: -999
-        texture: 2w4HRcC5jTPkW1
+      - depth: -1000
+        texture: h568qk2j9hmTBN
         extends:
-          shiftX: -184
-          scaleX: 0.78
-          scaleY: 0.8
+          scaleX: 0.72
           repeat: no-repeat
+          scaleY: 0.72
     copies:
-      - x: 1036
-        'y': 188
-        uid: 5rQTPHP4DN2wWF
+      - x: 64
+        'y': 224
+        uid: fDqC7p8gwbr8Lt
         exts: {}
-        ty: 0.8
-        tx: 0.8
-      - x: 295
-        'y': 196
-        uid: jMtj7HPqGPhtCn
+        tx: 0.55
+        ty: 0.55
+      - x: 496
+        'y': 224
+        uid: CGQh2NGQQ33h1K
         exts: {}
-        tx: 0.8
-        ty: 0.8
-      - x: 528
-        'y': 196
-        uid: 334W3nNq5p15b1
+        tx: 0.55
+        ty: 0.55
+      - x: 278
+        'y': 480
+        uid: MjgBF1fjdCRw4D
         exts: {}
-        ty: 0.8
-        tx: 0.8
-      - x: 790
-        'y': 201
-        uid: 2Tm7F9wpcb9Hqj
+        tx: 0.55
+        ty: 0.55
+      - x: 926
+        'y': 224
+        uid: bR74f99g1qG6J3
         exts: {}
-        ty: 0.8
-        tx: 0.8
-      - x: 188
-        'y': 315
-        uid: 12kH5hz5njj5Wh
+        tx: 0.55
+        ty: 0.55
+      - x: 712
+        'y': 480
+        uid: CkT8t6L9HCNTFB
         exts: {}
-        tx: 0.8
-        ty: 0.8
-      - x: 627
-        'y': 447
-        uid: fb3w7z8Qr9PrBQ
-        exts:
-          itemId: '3'
-      - x: 132
-        'y': 448
-        uid: fb3w7z8Qr9PrBQ
-        exts:
-          itemId: '1'
-      - x: 393
-        'y': 448
-        uid: fb3w7z8Qr9PrBQ
-        exts:
-          itemId: '2'
-      - x: 885
-        'y': 448
-        uid: fb3w7z8Qr9PrBQ
-        exts:
-          itemId: '4'
-      - x: 1134
-        'y': 450
-        uid: fb3w7z8Qr9PrBQ
-        exts:
-          itemId: '5'
+        tx: 0.55
+        ty: 0.55
+      - x: 144
+        'y': 40
+        uid: cjtg8Tgjm7ccLg
+        exts: {}
     tiles:
       - depth: -10
         tiles: []
         extends: {}
     extends:
       isUi: true
-    lastmod: 1660053428531
+    lastmod: 1660080131796
     thumbnail: Cp9zGzWWw32THW
     uid: Cp9zGzWWw32THW
     restrictCamera: false
@@ -2376,7 +2778,7 @@ scripts:
                   room.bgMoveDirection *= -1;
                   room.bgMoveTimer = 1200;
               } else {
-                  room.bgMoveTimer = 300;
+                  room.bgMoveTimer = 120;
               }
           }
       }
@@ -2401,6 +2803,10 @@ groups:
       icon: folder
       colorClass: act
       uid: kkT43DNmw9C5RM
+    - name: UI Items
+      icon: folder
+      colorClass: act
+      uid: t95cWTDcJrFPG7
   styles: []
   rooms: []
   templates:
@@ -2412,6 +2818,10 @@ groups:
       icon: folder
       colorClass: act
       uid: 6WDkpQz95HFRWW
+    - name: UI Items
+      icon: folder
+      colorClass: act
+      uid: QNchmGQMmKJqJQ
   sounds: []
   emitterTandems: []
 settings:
@@ -2441,5 +2851,62 @@ settings:
     accent: '#446adb'
     invertPreloaderScheme: true
   fps: 30
-fonts: []
+fonts:
+  - type: font
+    typefaceName: Exo2-Bold
+    weight: '400'
+    italic: false
+    origname: fp9Dmw5T6nL5hHd.ttf
+    lastmod: 1660077419101
+    bitmapFont: false
+    bitmapFontSize: 16
+    bitmapFontLineHeight: 18
+    charsets:
+      - allInFont
+    customCharset: ''
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    uid: p9Dmw5T6nL5hHd
+  - type: font
+    typefaceName: Exo2-SemiBold
+    weight: '400'
+    italic: false
+    origname: fDr55Lk8Gr6NtJR.ttf
+    lastmod: 1660077427931
+    bitmapFont: false
+    bitmapFontSize: 16
+    bitmapFontLineHeight: 18
+    charsets:
+      - allInFont
+    customCharset: ''
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    uid: Dr55Lk8Gr6NtJR
+  - type: font
+    typefaceName: Exo2-Regular
+    weight: '400'
+    italic: false
+    origname: f5NL36f7gDctccB.ttf
+    lastmod: 1660077435104
+    bitmapFont: false
+    bitmapFontSize: 16
+    bitmapFontLineHeight: 18
+    charsets:
+      - allInFont
+    customCharset: ''
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    uid: 5NL36f7gDctccB
+  - type: font
+    typefaceName: Exo2-Medium
+    weight: '400'
+    italic: false
+    origname: fz9hNj1jpFFF1CK.ttf
+    lastmod: 1660077442275
+    bitmapFont: false
+    bitmapFontSize: 16
+    bitmapFontLineHeight: 18
+    charsets:
+      - allInFont
+    customCharset: ''
+    group: !<tag:yaml.org,2002:js/undefined> ''
+    uid: z9hNj1jpFFF1CK
 startroom: rMJ2hRjKRfGMFP
+palette: []
