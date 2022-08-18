@@ -25,14 +25,12 @@ contract SpaceRanger is ERC1155, Ownable {
 		uint salePrice;
 	}
 
-
-// https://bafybeiept7dnqz4755bx4kg5zq6df6cqi3u5bfadjsr32wnx3z7ij2e3nm.ipfs.nftstorage.link/1-1.png
-	constructor() ERC1155("https://bafybeiept7dnqz4755bx4kg5zq6df6cqi3u5bfadjsr32wnx3z7ij2e3nm.ipfs.nftstorage.link/{id}.json") {}
+	constructor() ERC1155("https://bafybeibxyhdne4x3uqblljkl2aetxvldtpb4lctstjqe22yr77gnrnlaia.ipfs.nftstorage.link/{id}.json") {}
 
 	function uri(uint _tokenId) override public pure returns (string memory){
 		return string(
 			abi.encodePacked(
-				"https://ipfs.io/ipfs/bafybeiept7dnqz4755bx4kg5zq6df6cqi3u5bfadjsr32wnx3z7ij2e3nm/",
+				"https://ipfs.io/ipfs/bafybeibxyhdne4x3uqblljkl2aetxvldtpb4lctstjqe22yr77gnrnlaia/",
 				Strings.toString(_tokenId),
 				".json"
 			)
