@@ -1,11 +1,11 @@
 {
-  "name": "Polaris V1",
-  "description": "Polaris Spaceship - modification #1",
-  "image": "https://bafybeih2oh2qvjnptpqsmbxn64ncw6a74mjahotjk6cjjx732eqnpjcxou.ipfs.nftstorage.link/21.png",
+  "name": "Polaris V2",
+  "description": "Polaris Spaceship - modification #2",
+  "image": "https://bafybeih2oh2qvjnptpqsmbxn64ncw6a74mjahotjk6cjjx732eqnpjcxou.ipfs.nftstorage.link/22.png",
   "attributes": [
     {
       "trait_type": "Health",
-      "value": "26"
+      "value": "43"
     },
     {
       "trait_type": "Attack",
@@ -17,7 +17,7 @@
     },
     {
       "trait_type": "Weapons",
-      "value": "1"
+      "value": "2"
     }
   ]
 }

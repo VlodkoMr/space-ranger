@@ -1,0 +1,23 @@
+{
+  "name": "Spectrum V3",
+  "description": "Spectrum Spaceship - modification #3",
+  "image": "https://bafybeih2oh2qvjnptpqsmbxn64ncw6a74mjahotjk6cjjx732eqnpjcxou.ipfs.nftstorage.link/13.png",
+  "attributes": [
+    {
+      "trait_type": "Health",
+      "value": "60"
+    },
+    {
+      "trait_type": "Attack",
+      "value": "12"
+    },
+    {
+      "trait_type": "Speed",
+      "value": "7"
+    },
+    {
+      "trait_type": "Weapons",
+      "value": "4"
+    }
+  ]
+}

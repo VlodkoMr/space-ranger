@@ -11,15 +11,15 @@ contract SpaceRanger is ERC1155, Ownable {
 	uint public totalMintedShips = 0;
 
 	mapping(address => uint) public userScores; // total scores
-	mapping(address => uint) public userLevel; // last planet discovered by user
+	mapping(address => uint) public userLevel; // last user level
 	mapping(address => Ship[]) public userShips;
 
 	struct Ship {
 		uint id;
-		uint8 health; // 25-100
-		uint8 attack; // 10-50
-		uint8 weapons; // 1-4
-		uint8 level; // 1-3
+		uint8 health;
+		uint8 attack;
+		uint8 weapons;
+		uint8 level;
 		uint8 shipType;
 		bool onSale;
 		uint salePrice;

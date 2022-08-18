@@ -1,15 +1,15 @@
 {
-  "name": "Spectrum V2",
-  "description": "Spectrum Spaceship - modification #2",
-  "image": "https://bafybeih2oh2qvjnptpqsmbxn64ncw6a74mjahotjk6cjjx732eqnpjcxou.ipfs.nftstorage.link/12.png",
+  "name": "Valkyrie V2",
+  "description": "Valkyrie Spaceship - modification #2",
+  "image": "https://bafybeih2oh2qvjnptpqsmbxn64ncw6a74mjahotjk6cjjx732eqnpjcxou.ipfs.nftstorage.link/32.png",
   "attributes": [
     {
       "trait_type": "Health",
-      "value": "40"
+      "value": "36"
     },
     {
       "trait_type": "Attack",
-      "value": "12"
+      "value": "14"
     },
     {
       "trait_type": "Speed",

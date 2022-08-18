@@ -1,0 +1,23 @@
+{
+  "name": "Valkyrie V3",
+  "description": "Valkyrie Spaceship - modification #3",
+  "image": "https://bafybeih2oh2qvjnptpqsmbxn64ncw6a74mjahotjk6cjjx732eqnpjcxou.ipfs.nftstorage.link/33.png",
+  "attributes": [
+    {
+      "trait_type": "Health",
+      "value": "54"
+    },
+    {
+      "trait_type": "Attack",
+      "value": "14"
+    },
+    {
+      "trait_type": "Speed",
+      "value": "6"
+    },
+    {
+      "trait_type": "Weapons",
+      "value": "4"
+    }
+  ]
+}
