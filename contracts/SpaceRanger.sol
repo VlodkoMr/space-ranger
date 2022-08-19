@@ -16,6 +16,13 @@ contract SpaceRanger is ERC1155, Ownable, ShipHelper {
   mapping(uint => Ship) public ships; // all spaceShips by id
   mapping(address => uint[]) public userShips; // list of user ships
 
+  enum ShipUpgradeType {
+    Armor, // + health (+2x3)
+    Engine, // + speed (+1x1)
+    Energy, // + daily fly amount (+2x2)
+    Weapon // + attack (+2x2)
+  }
+
   struct Ship {
     uint id;
     uint8 health;
@@ -23,10 +30,11 @@ contract SpaceRanger is ERC1155, Ownable, ShipHelper {
     uint8 weapons;
     uint8 speed;
     uint8 level;
+    uint8 energy;
     uint8 shipType;
     bool onSale;
     uint salePrice;
-    string[] upgrades;
+    ShipUpgradeType[] upgrades;
   }
 
   constructor() ERC1155("https://bafybeibxyhdne4x3uqblljkl2aetxvldtpb4lctstjqe22yr77gnrnlaia.ipfs.nftstorage.link/{id}.json") {}
@@ -66,10 +74,11 @@ contract SpaceRanger is ERC1155, Ownable, ShipHelper {
     weapons : _weapons,
     speed : _speed,
     level : 1,
+    energy: 10,
     shipType : _shipTypeId,
     onSale : false,
     salePrice : 0,
-    upgrades : new string[](0)
+    upgrades : new ShipUpgradeType[](0)
     });
 
     ships[_id] = _newShip;
