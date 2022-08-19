@@ -1,3 +1,4 @@
+require('dotenv').config();
 require("@nomicfoundation/hardhat-toolbox");
 
 /** @type import('hardhat/config').HardhatUserConfig */
@@ -22,7 +23,7 @@ module.exports = {
       }
     },
     mumbai_testnet: {
-      url: "https://matic-mumbai.chainstacklabs.com",
+      url: process.env.MUMBAI_TESTNET_URL,
       accounts: process.env.MUMBAI_TESTNET_PRIVATE_KEY !== undefined ? [process.env.MUMBAI_TESTNET_PRIVATE_KEY] : [],
     },
     polygon_mainnet: {

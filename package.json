@@ -7,17 +7,18 @@
     "local": "npx hardhat node",
     "compile": "npx hardhat compile",
     "console": "npx hardhat console --network localhost",
-    "deploy": "env $(cat .env) npx hardhat run scripts/deploy.js --network localhost",
-    "update": "env $(cat .env) npx hardhat run ./scripts/upgrade.js --network localhost",
-    "deploy:dev:mumbai": "env $(cat .env) npx hardhat run ./scripts/deploy.js --network mumbai_testnet",
-    "update:dev:mumbai": "env $(cat .env) npx hardhat run ./scripts/upgrade.mumbai.js --network mumbai_testnet"
+    "deploy": "npx hardhat run scripts/deploy.js --network localhost",
+    "update": "npx hardhat run ./scripts/upgrade.js --network localhost",
+    "deploy:dev:mumbai": "npx hardhat run ./scripts/deploy.js --network mumbai_testnet",
+    "update:dev:mumbai": "npx hardhat run ./scripts/upgrade.mumbai.js --network mumbai_testnet"
   },
   "author": "Vlodkow",
   "license": "MIT",
   "dependencies": {
-    "@openzeppelin/contracts": "^4.7.2",
-    "@openzeppelin/contracts-upgradeable": "^4.7.2",
+    "@openzeppelin/contracts": "^4.7.3",
+    "@openzeppelin/contracts-upgradeable": "^4.7.3",
     "@openzeppelin/hardhat-upgrades": "^1.19.1",
+    "dotenv": "^16.0.1",
     "hardhat": "^2.10.1",
     "process": "^0.11.10"
   },
