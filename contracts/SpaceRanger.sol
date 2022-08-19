@@ -4,16 +4,17 @@ pragma solidity ^0.8.9;
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./Utils.sol";
+import "../abstract/ShipHelper.sol";
 
-contract SpaceRanger is ERC1155, Ownable, Utils {
+contract SpaceRanger is ERC1155, Ownable, ShipHelper {
   uint public constant SHIPS_TYPE_SUPPLY = 1000;
   uint16[] public mintedShips = [0, 0, 0, 0, 0];
   uint public totalMintedShips = 0;
 
   mapping(address => uint) public userScores; // total scores
   mapping(address => uint) public userLevel; // last user level
-  mapping(address => Ship[]) public userShips;
+  mapping(uint => Ship) public ships; // all spaceShips by id
+  mapping(address => uint[]) public userShips; // list of user ships
 
   struct Ship {
     uint id;
@@ -25,6 +26,7 @@ contract SpaceRanger is ERC1155, Ownable, Utils {
     uint8 shipType;
     bool onSale;
     uint salePrice;
+    string[] upgrades;
   }
 
   constructor() ERC1155("https://bafybeibxyhdne4x3uqblljkl2aetxvldtpb4lctstjqe22yr77gnrnlaia.ipfs.nftstorage.link/{id}.json") {}
@@ -55,7 +57,7 @@ contract SpaceRanger is ERC1155, Ownable, Utils {
     _mint(msg.sender, _id, 1, "");
     mintedShips[_shipTypeIndex] += 1;
 
-    (uint8 _health, uint8 _attack, uint8 _speed,uint8 _weapons) = Utils.getShipStats(_shipTypeId);
+    (uint8 _health, uint8 _attack, uint8 _speed,uint8 _weapons) = ShipHelper.getShipStats(_shipTypeId);
 
     Ship memory _newShip = Ship({
     id : _id,
@@ -66,17 +68,30 @@ contract SpaceRanger is ERC1155, Ownable, Utils {
     level : 1,
     shipType : _shipTypeId,
     onSale : false,
-    salePrice : 0
+    salePrice : 0,
+    upgrades : new string[](0)
     });
-    userShips[msg.sender].push(_newShip);
+
+    ships[_id] = _newShip;
+    userShips[msg.sender].push(_id);
   }
 
   function getUserShips(address _owner) public view returns (Ship[] memory){
     Ship[] memory _result = new Ship[](userShips[_owner].length);
     for (uint _i = 0; _i < userShips[_owner].length; ++_i) {
-      _result[_i] = userShips[_owner][_i];
+      _result[_i] = ships[userShips[_owner][_i]];
     }
     return _result;
+  }
+
+  // Upgrade Ship by id
+  function upgradeShip(uint _id, string memory _upgradeType) public {
+    Ship storage ship = ships[_id];
+
+    require(ship.id == _id, "SpaceShip not found");
+    require(ship.upgrades.length < 6, "Can't upgrade ship, spots limit reached");
+
+
   }
 
   function _beforeTokenTransfer(address operator, address from, address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data)
