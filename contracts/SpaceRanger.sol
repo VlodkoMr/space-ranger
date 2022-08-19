@@ -4,8 +4,9 @@ pragma solidity ^0.8.9;
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./Utils.sol";
 
-contract SpaceRanger is ERC1155, Ownable {
+contract SpaceRanger is ERC1155, Ownable, Utils {
   uint public constant SHIPS_TYPE_SUPPLY = 1000;
   uint16[] public mintedShips = [0, 0, 0, 0, 0];
   uint public totalMintedShips = 0;
@@ -19,6 +20,7 @@ contract SpaceRanger is ERC1155, Ownable {
     uint8 health;
     uint8 attack;
     uint8 weapons;
+    uint8 speed;
     uint8 level;
     uint8 shipType;
     bool onSale;
@@ -53,7 +55,7 @@ contract SpaceRanger is ERC1155, Ownable {
     _mint(msg.sender, _id, 1, "");
     mintedShips[_shipTypeIndex] += 1;
 
-    uint(_health, _attack, _speed, _weapons) = getShipStats(_shipTypeId);
+    (uint8 _health, uint8 _attack, uint8 _speed,uint8 _weapons) = Utils.getShipStats(_shipTypeId);
 
     Ship memory _newShip = Ship({
     id : _id,

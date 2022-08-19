@@ -6,7 +6,7 @@ abstract contract Utils {
     return uint(keccak256(abi.encodePacked(uint(1), block.difficulty, block.timestamp, uint(1)))) % _max;
   }
 
-  function getShipStats(uint _id) internal view returns (uint, uint, uint, uint) {
+  function getShipStats(uint _id) internal pure returns (uint8, uint8, uint8, uint8) {
     if (_id == 11) {
       return (25, 12, 5, 1);
     } else if (_id == 21) {
