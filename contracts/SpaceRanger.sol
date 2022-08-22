@@ -43,10 +43,6 @@ contract SpaceRanger is ERC1155, Ownable, ERC1155Burnable, ShipHelper, Utils {
   }
 
   constructor() ERC1155("https://bafybeibxyhdne4x3uqblljkl2aetxvldtpb4lctstjqe22yr77gnrnlaia.ipfs.nftstorage.link/{id}.json") {
-    // Generate all 5000 spaceShips. Id of each ship type increase by 10 (11-51)
-    for (uint8 _i = 11; _i <= 51; _i += 10) {
-      _mint(address(this), _i, SHIPS_TYPE_SUPPLY, "");
-    }
   }
 
   function uri(uint _tokenId) override public pure returns (string memory){
@@ -65,7 +61,7 @@ contract SpaceRanger is ERC1155, Ownable, ERC1155Burnable, ShipHelper, Utils {
 
   // Allow to mint 1 free ship per account
   function mint(uint8 _shipTypeId) public {
-    require(_shipTypeId < mintedShips.length, "SpaceShip doesn't exists");
+    require(_shipTypeId <= mintedShips.length, "SpaceShip doesn't exists");
     require(_shipTypeId > 0, "Wrong SpaceShip ID");
     require(userShips[msg.sender].length == 0, "You already have SpaceShip");
 
@@ -76,11 +72,10 @@ contract SpaceRanger is ERC1155, Ownable, ERC1155Burnable, ShipHelper, Utils {
 
     // transfer NFT
     string memory _shipTypeLevel = Utils.concatStrings(Strings.toString(_shipTypeId), Strings.toString(1));
-    safeTransferFrom(address(this), msg.sender, Utils.stringToUint(_shipTypeLevel), 1, "");
-    //    _mint(msg.sender, _id, 1, "");
+    _mint(msg.sender, Utils.stringToUint(_shipTypeLevel), 1, "");
     mintedShips[_shipTypeIndex] += 1;
 
-    (uint8 _health, uint8 _attack, uint8 _speed,uint8 _weapons) = ShipHelper.getShipStats(_shipTypeId);
+    (uint8 _health, uint8 _attack, uint8 _speed, uint8 _weapons) = ShipHelper.getShipStats(_shipTypeId);
 
     Ship memory _newShip = Ship({
     id : _id,
@@ -108,6 +103,10 @@ contract SpaceRanger is ERC1155, Ownable, ERC1155Burnable, ShipHelper, Utils {
       _result[_i] = ships[userShips[_owner][_i]];
     }
     return _result;
+  }
+
+  function claimRewards(uint _scores) public {
+    userBalance[msg.sender] += _scores;
   }
 
   // Upgrade SpaceShip characteristics
@@ -171,12 +170,15 @@ contract SpaceRanger is ERC1155, Ownable, ERC1155Burnable, ShipHelper, Utils {
     ship.level = _nextLevel;
 
     // TODO: Update by ship type
-    ship.health = 60;
-    ship.attack = 20;
-    ship.weapons = 2;
-    ship.maxEnergy = 20;
-    ship.speed = 6;
+    if (ship.weapons == 1) {
+      ship.weapons += 1;
+    } else {
+      ship.attack += 10;
+    }
 
+    ship.health += 20;
+    ship.maxEnergy += 20;
+    ship.speed += 1;
     ship.onSale = false;
     ship.salePrice = 0;
   }
