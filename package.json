@@ -10,7 +10,7 @@
     "deploy": "npx hardhat run scripts/deploy.js --network localhost",
     "update": "npx hardhat run ./scripts/upgrade.js --network localhost",
     "deploy:dev:mumbai": "npx hardhat run ./scripts/deploy.js --network mumbai_testnet",
-    "verify:dev:mumbai": "npx hardhat verify '0xB6780EFe772194a576f8388A2645F3110AbBF902' --network mumbai_testnet",
+    "verify:dev:mumbai": "npx hardhat verify '0xeF26D544994f9fD5C4CA65d96f67f3f98FD37cb3' --network mumbai_testnet",
     "update:dev:mumbai": "npx hardhat run ./scripts/upgrade.mumbai.js --network mumbai_testnet"
   },
   "author": "Vlodkow",
