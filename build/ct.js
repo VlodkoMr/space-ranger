@@ -1193,7 +1193,8 @@ ct.rooms.beforeDraw = function beforeDraw() {
     
 };
 ct.rooms.afterDraw = function afterDraw() {
-    if (ct.sound.follow && !ct.sound.follow.kill) {
+    ct.keyboard.clear();
+if (ct.sound.follow && !ct.sound.follow.kill) {
     ct.sound.howler.pos(
         ct.sound.follow.x,
         ct.sound.follow.y,
@@ -1209,7 +1210,6 @@ for (const touch of ct.touch.events) {
     touch.yuiprev = touch.y;
     ct.touch.clearReleased();
 }
-ct.keyboard.clear();
 ct.mouse.xprev = ct.mouse.x;
 ct.mouse.yprev = ct.mouse.y;
 ct.mouse.xuiprev = ct.mouse.xui;
@@ -1274,11 +1274,12 @@ if (this.bossTimer <= 0) {
         localStorage.score = this.score;
     },
     onCreate() {
-        
+        ct.sound.stop('Music_MainMenu');
 ct.sound.spawn('Music_MainTheme', {
     loop: true,
     volume: 0.25
 });
+
 
 if (ct.touch.enabled) {
     ct.rooms.append('Controls_Layer', {isUi: true});
@@ -1308,7 +1309,7 @@ ct.rooms.templates['ConnectMetamask'] = {
     width: 1366,
     height: 768,
     /* JSON.parse allows for a much faster loading of big objects */
-    objects: JSON.parse('[{"x":704,"y":608,"exts":{},"tx":0.55,"ty":0.55,"template":"ConnectMetamask"},{"x":704,"y":400,"exts":{},"tx":0.5,"ty":0.5,"template":"GameInfo"},{"x":704,"y":152,"exts":{},"tx":0.5,"ty":0.5,"template":"LogoSpaceRanger"}]'),
+    objects: JSON.parse('[{"x":704,"y":608,"exts":{},"tx":0.55,"ty":0.55,"template":"ConnectMetamask"},{"x":704,"y":400,"exts":{},"tx":0.5,"ty":0.5,"template":"GameInfo"},{"x":704,"y":152,"exts":{},"tx":0.5,"ty":0.5,"template":"LogoSpaceRanger"},{"x":1320,"y":720,"exts":{},"tx":0.5,"ty":0.5,"template":"FullScreen"}]'),
     bgs: JSON.parse('[{"depth":-10,"texture":"BgSpace","extends":{"repeat":"no-repeat","scaleX":0.74,"movementY":0,"movementX":0,"shiftX":-80,"scaleY":0.74}},{"depth":-8,"texture":"Stars_Big","extends":{"movementY":0,"movementX":-0.1,"scaleX":0.5,"scaleY":0.5}}]'),
     tiles: JSON.parse('[{"depth":-10,"tiles":[],"extends":{}}]'),
     backgroundColor: '#000000',
@@ -1357,7 +1358,7 @@ if (this.asteroidTimer <= 0) {
         
     },
     onLeave() {
-        ct.sound.stop('Music_MainMenu');
+        
     },
     onCreate() {
         this.isLoading = true;
@@ -1377,7 +1378,7 @@ ct.rooms.templates['RetryScreen'] = {
     width: 1366,
     height: 768,
     /* JSON.parse allows for a much faster loading of big objects */
-    objects: JSON.parse('[{"x":680,"y":192,"exts":{},"tx":0.5,"ty":0.5,"template":"OhNo"},{"x":672,"y":608,"exts":{},"lastX":680,"lastY":608,"template":"ButtonMainMenu"},{"x":672,"y":536,"exts":{},"template":"ButtonClaimCoins"}]'),
+    objects: JSON.parse('[{"x":680,"y":192,"exts":{},"tx":0.5,"ty":0.5,"template":"OhNo"},{"x":672,"y":608,"exts":{},"lastX":680,"lastY":608,"template":"ButtonMainMenu"},{"x":672,"y":536,"exts":{},"template":"ButtonClaimCoins"},{"x":1320,"y":720,"exts":{},"tx":0.5,"ty":0.5,"template":"FullScreen"}]'),
     bgs: JSON.parse('[{"depth":-10,"texture":"BgSpace","extends":{"scaleX":0.74,"scaleY":0.74,"shiftX":-80,"repeat":"no-repeat"}},{"depth":-9,"texture":"Stars_Small","extends":{"scaleX":0.5,"scaleY":0.5,"movementX":-0.1}}]'),
     tiles: JSON.parse('[{"depth":-10,"tiles":[],"extends":{}}]'),
     backgroundColor: '#000000',
@@ -1392,7 +1393,14 @@ ct.rooms.templates['RetryScreen'] = {
         
     },
     onCreate() {
-        this.score = Number(localStorage.score);
+        ct.sound.spawn('Music_MainMenu', {
+    loop: true,
+    volume: 0.5
+});
+ct.sound.stop('Music_MainTheme');
+ct.sound.stop('Music_BossTheme');
+
+this.score = Number(localStorage.score);
 this.highscore = Number(localStorage.highscore || 0);
 
 localStorage.highscore = Math.max(this.highscore, this.score);
@@ -1515,7 +1523,7 @@ ct.rooms.templates['VictoryScreen'] = {
     width: 1366,
     height: 768,
     /* JSON.parse allows for a much faster loading of big objects */
-    objects: JSON.parse('[{"x":464,"y":192,"exts":{},"tx":0.6,"ty":0.6,"template":"Victory"},{"x":704,"y":600,"exts":{},"template":"ButtonMainMenu"}]'),
+    objects: JSON.parse('[{"x":464,"y":192,"exts":{},"tx":0.6,"ty":0.6,"template":"Victory"},{"x":704,"y":600,"exts":{},"template":"ButtonMainMenu"},{"x":1320,"y":720,"exts":{},"tx":0.5,"ty":0.5,"template":"FullScreen"}]'),
     bgs: JSON.parse('[{"depth":-10,"texture":"BgSpace","extends":{"shiftX":-80,"scaleX":0.74,"scaleY":0.74,"repeat":"no-repeat"}},{"depth":-4,"texture":"Stars_Small","extends":{"movementY":0,"movementX":-0.1,"scaleX":0.5,"scaleY":0.5}}]'),
     tiles: JSON.parse('[{"depth":-10,"tiles":[],"extends":{}}]'),
     backgroundColor: '#000000',
@@ -1534,7 +1542,7 @@ ct.rooms.templates['VictoryScreen'] = {
     loop: true,
     volume: 0.5
 });
-ct.sound.stop('Music_MainMenu');
+ct.sound.stop('Music_MainTheme');
 ct.sound.stop('Music_BossTheme');
 
 this.score = Number(localStorage.score);
@@ -1555,7 +1563,7 @@ ct.rooms.templates['MainMenu'] = {
     width: 1366,
     height: 768,
     /* JSON.parse allows for a much faster loading of big objects */
-    objects: JSON.parse('[{"x":180,"y":344,"exts":{},"template":"ButtonPlay"},{"x":1124,"y":496,"exts":{},"template":"EnemyPlanet"},{"x":180,"y":416,"exts":{},"template":"ButtonLeaderboard"},{"x":1160,"y":34,"exts":{},"template":"TopPanel"},{"x":115,"y":130,"exts":{},"template":"AccountId"},{"x":1080,"y":20,"exts":{},"template":"UserCoins"},{"x":64,"y":600,"exts":{},"template":"MainMenuText"},{"x":1220,"y":20,"exts":{},"template":"UserEnergy"},{"x":180,"y":272,"exts":{},"template":"ButtonMyShip"}]'),
+    objects: JSON.parse('[{"x":180,"y":344,"exts":{},"template":"ButtonPlay"},{"x":1124,"y":496,"exts":{},"template":"EnemyPlanet"},{"x":180,"y":416,"exts":{},"template":"ButtonLeaderboard"},{"x":1160,"y":34,"exts":{},"template":"TopPanel"},{"x":115,"y":130,"exts":{},"template":"AccountId"},{"x":1080,"y":20,"exts":{},"template":"UserCoins"},{"x":64,"y":600,"exts":{},"template":"MainMenuText"},{"x":1220,"y":20,"exts":{},"template":"UserEnergy"},{"x":180,"y":272,"exts":{},"template":"ButtonMyShip"},{"x":1320,"y":720,"exts":{},"tx":0.5,"ty":0.5,"template":"FullScreen"}]'),
     bgs: JSON.parse('[{"depth":-10,"texture":"Levels","extends":{"repeat":"no-repeat"}},{"depth":-9,"texture":"Stars_Big","extends":{"movementY":0,"movementX":-0.1,"parallaxX":0,"parallaxY":0,"scaleX":0.5,"scaleY":0.5}}]'),
     tiles: JSON.parse('[{"depth":-10,"tiles":[],"extends":{}}]'),
     backgroundColor: '#000000',
@@ -1570,12 +1578,12 @@ ct.rooms.templates['MainMenu'] = {
         
     },
     onCreate() {
-        // ct.sound.spawn('Music_MainMenu', {
-//     loop: true,
-//     volume: 0.5
-// });
-// ct.sound.stop('Music_MainMenu');
-// ct.sound.stop('Music_BossTheme');
+        ct.sound.spawn('Music_MainMenu', {
+    loop: true,
+    volume: 0.5
+});
+ct.sound.stop('Music_MainTheme');
+ct.sound.stop('Music_BossTheme');
 
 ct.web3.onAccountChange(()=> {
     ct.rooms.switch('ConnectMetamask');
@@ -1589,7 +1597,7 @@ ct.rooms.templates['MintShip'] = {
     width: 1366,
     height: 768,
     /* JSON.parse allows for a much faster loading of big objects */
-    objects: JSON.parse('[{"x":312,"y":312,"exts":{},"tx":0.5,"ty":0.5,"template":"ShipCard1"},{"x":696,"y":312,"exts":{},"tx":0.5,"ty":0.5,"template":"ShipCard2"},{"x":504,"y":528,"exts":{},"tx":0.5,"ty":0.5,"template":"ShipCard5"},{"x":1120,"y":504,"exts":{},"template":"EnemyPlanet"},{"x":888,"y":528,"exts":{},"tx":0.5,"ty":0.5,"template":"ShipCard3"},{"x":1080,"y":312,"exts":{},"tx":0.5,"ty":0.5,"template":"ShipCard4"}]'),
+    objects: JSON.parse('[{"x":312,"y":312,"exts":{},"tx":0.5,"ty":0.5,"template":"ShipCard1"},{"x":696,"y":312,"exts":{},"tx":0.5,"ty":0.5,"template":"ShipCard2"},{"x":504,"y":528,"exts":{},"tx":0.5,"ty":0.5,"template":"ShipCard5"},{"x":1120,"y":504,"exts":{},"template":"EnemyPlanet"},{"x":888,"y":528,"exts":{},"tx":0.5,"ty":0.5,"template":"ShipCard3"},{"x":1080,"y":312,"exts":{},"tx":0.5,"ty":0.5,"template":"ShipCard4"},{"x":1320,"y":720,"exts":{},"tx":0.5,"ty":0.5,"template":"FullScreen"}]'),
     bgs: JSON.parse('[{"depth":-10,"texture":"MintShip","extends":{"repeat":"no-repeat"}},{"depth":-8,"texture":"Stars_Big","extends":{"movementY":0,"movementX":-0.1,"scaleX":0.5,"scaleY":0.5}}]'),
     tiles: JSON.parse('[{"depth":-10,"tiles":[],"extends":{}}]'),
     backgroundColor: '#000000',
@@ -1604,10 +1612,10 @@ ct.rooms.templates['MintShip'] = {
         
     },
     onCreate() {
-        // ct.sound.spawn('Music_MainMenu', {
-//     loop: true,
-//     volume: 0.5
-// });
+        ct.sound.spawn('Music_MainMenu', {
+    loop: true,
+    volume: 0.5
+});
 // ct.sound.stop('Music_MainMenu');
 // ct.sound.stop('Music_BossTheme');
 
@@ -1651,7 +1659,7 @@ ct.rooms.templates['Leaderboard'] = {
     width: 1366,
     height: 768,
     /* JSON.parse allows for a much faster loading of big objects */
-    objects: JSON.parse('[{"x":1124,"y":496,"exts":{},"template":"EnemyPlanet"},{"x":456,"y":192,"exts":{},"template":"LeaderboardTable"},{"x":40,"y":30,"exts":{},"template":"Back"}]'),
+    objects: JSON.parse('[{"x":1124,"y":496,"exts":{},"template":"EnemyPlanet"},{"x":456,"y":192,"exts":{},"template":"LeaderboardTable"},{"x":40,"y":30,"exts":{},"template":"Back"},{"x":1320,"y":720,"exts":{},"tx":0.5,"ty":0.5,"template":"FullScreen"}]'),
     bgs: JSON.parse('[{"depth":-10,"texture":"Leaderboard","extends":{"repeat":"no-repeat"}},{"depth":-9,"texture":"Stars_Big","extends":{"movementY":0,"movementX":-0.1,"parallaxX":0,"parallaxY":0,"scaleX":0.5,"scaleY":0.5}}]'),
     tiles: JSON.parse('[{"depth":-10,"tiles":[],"extends":{}}]'),
     backgroundColor: '#000000',
@@ -1666,10 +1674,10 @@ ct.rooms.templates['Leaderboard'] = {
         
     },
     onCreate() {
-        // ct.sound.spawn('Music_MainMenu', {
-//     loop: true,
-//     volume: 0.5
-// });
+        ct.sound.spawn('Music_MainMenu', {
+    loop: true,
+    volume: 0.5
+});
 // ct.sound.stop('Music_MainMenu');
 // ct.sound.stop('Music_BossTheme');
 
@@ -1685,7 +1693,7 @@ ct.rooms.templates['MyShip'] = {
     width: 1366,
     height: 768,
     /* JSON.parse allows for a much faster loading of big objects */
-    objects: JSON.parse('[{"x":1116,"y":496,"exts":{},"template":"EnemyPlanet"},{"x":40,"y":30,"exts":{},"template":"Back"},{"x":216,"y":216,"exts":{},"template":"ShipInfo"},{"x":504,"y":368,"exts":{},"template":"Player_SpaceShip_UI"},{"x":840,"y":304,"exts":{},"template":"LevelInfo"},{"x":1008,"y":312,"exts":{},"tx":0.5,"ty":0.5,"template":"ButtonUpdateLevel"},{"x":840,"y":384,"exts":{},"template":"EnergyInfo"},{"x":960,"y":568,"exts":{},"tx":0.55,"ty":0.55,"lastX":960,"lastY":576,"template":"SaveShip"},{"x":840,"y":440,"exts":{},"template":"CharacteristicsInfo"},{"x":1008,"y":392,"exts":{},"tx":0.5,"ty":0.5,"template":"ButtonAddEnergy"},{"x":960,"y":248,"exts":{},"template":"ShipName"}]'),
+    objects: JSON.parse('[{"x":1116,"y":496,"exts":{},"template":"EnemyPlanet"},{"x":40,"y":30,"exts":{},"template":"Back"},{"x":216,"y":216,"exts":{},"template":"ShipInfo"},{"x":504,"y":368,"exts":{},"template":"Player_SpaceShip_UI"},{"x":840,"y":304,"exts":{},"template":"LevelInfo"},{"x":1008,"y":312,"exts":{},"tx":0.5,"ty":0.5,"template":"ButtonUpdateLevel"},{"x":840,"y":384,"exts":{},"template":"EnergyInfo"},{"x":960,"y":568,"exts":{},"tx":0.55,"ty":0.55,"lastX":960,"lastY":576,"template":"SaveShip"},{"x":840,"y":440,"exts":{},"template":"CharacteristicsInfo"},{"x":1008,"y":392,"exts":{},"tx":0.5,"ty":0.5,"template":"ButtonAddEnergy"},{"x":960,"y":248,"exts":{},"template":"ShipName"},{"x":1320,"y":720,"exts":{},"tx":0.5,"ty":0.5,"template":"FullScreen"}]'),
     bgs: JSON.parse('[{"depth":-10,"texture":"MyShip","extends":{"repeat":"no-repeat"}},{"depth":-9,"texture":"Stars_Big","extends":{"movementY":0,"movementX":-0.1,"parallaxX":0,"parallaxY":0,"scaleX":0.5,"scaleY":0.5}}]'),
     tiles: JSON.parse('[{"depth":-10,"tiles":[],"extends":{}}]'),
     backgroundColor: '#000000',
@@ -1700,10 +1708,10 @@ ct.rooms.templates['MyShip'] = {
         
     },
     onCreate() {
-        // ct.sound.spawn('Music_MainMenu', {
-//     loop: true,
-//     volume: 0.5
-// });
+        ct.sound.spawn('Music_MainMenu', {
+    loop: true,
+    volume: 0.5
+});
 // ct.sound.stop('Music_MainMenu');
 // ct.sound.stop('Music_BossTheme');
 
@@ -7604,6 +7612,37 @@ ct.templates.templates["Coin"] = {
     extends: {}
 };
 ct.templates.list['Coin'] = [];
+ct.templates.templates["FullScreen"] = {
+    depth: 0,
+    blendMode: PIXI.BLEND_MODES.NORMAL,
+    playAnimationOnStart: false,
+    texture: "icons8-fullscreen-64",
+    onStep: function () {
+        
+if (ct.actions.Touch.pressed) {
+    if (ct.mouse.hovers(this) || ct.touch.collide(this)) {
+        ct.fittoscreen.toggleFullscreen();
+    }
+}
+
+if (ct.touch.enabled) {
+    if (ct.touch.hovers(this)) {
+        ct.fittoscreen.toggleFullscreen();
+    }
+}
+    },
+    onDraw: function () {
+        
+    },
+    onDestroy: function () {
+        
+    },
+    onCreate: function () {
+        
+    },
+    extends: {}
+};
+ct.templates.list['FullScreen'] = [];
     (function vkeysTemplates() {
     ct.templates.templates.VKEY = {
         onStep: function () {
@@ -10313,148 +10352,6 @@ ct.u.ext(ct.random, {
         return (name in ct.res.sounds);
     };
 })();
-
-(
-  function fittoscreen(ct) {
-    document.body.style.overflow = 'hidden';
-    var canv = ct.pixiApp.view;
-    const positionCanvas = function positionCanvas(mode, scale) {
-        if (mode === 'fastScale' || mode === 'fastScaleInteger') {
-            canv.style.transform = `translate(-50%, -50%) scale(${scale})`;
-            canv.style.position = 'absolute';
-            canv.style.top = '50%';
-            canv.style.left = '50%';
-        } else if (mode === 'expandViewport' || mode === 'expand' || mode === 'scaleFill') {
-            canv.style.position = 'static';
-            canv.style.top = 'unset';
-            canv.style.left = 'unset';
-        } else if (mode === 'scaleFit') {
-            canv.style.transform = 'translate(-50%, -50%)';
-            canv.style.position = 'absolute';
-            canv.style.top = '50%';
-            canv.style.left = '50%';
-        }
-    };
-    var resize = function resize() {
-        const {mode} = ct.fittoscreen;
-        const pixelScaleModifier = ct.highDensity ? (window.devicePixelRatio || 1) : 1;
-        const kw = window.innerWidth / ct.roomWidth,
-              kh = window.innerHeight / ct.roomHeight;
-        let k = Math.min(kw, kh);
-        if (mode === 'fastScaleInteger') {
-            k = k < 1 ? k : Math.floor(k);
-        }
-        var canvasWidth, canvasHeight,
-            cameraWidth, cameraHeight;
-        if (mode === 'expandViewport' || mode === 'expand') {
-            canvasWidth = Math.ceil(window.innerWidth * pixelScaleModifier);
-            canvasHeight = Math.ceil(window.innerHeight * pixelScaleModifier);
-            cameraWidth = window.innerWidth;
-            cameraHeight = window.innerHeight;
-        } else if (mode === 'fastScale' || mode === 'fastScaleInteger') {
-            canvasWidth = Math.ceil(ct.roomWidth * pixelScaleModifier);
-            canvasHeight = Math.ceil(ct.roomHeight * pixelScaleModifier);
-            cameraWidth = ct.roomWidth;
-            cameraHeight = ct.roomHeight;
-        } else if (mode === 'scaleFit' || mode === 'scaleFill') {
-            if (mode === 'scaleFill') {
-                canvasWidth = Math.ceil(ct.roomWidth * kw * pixelScaleModifier);
-                canvasHeight = Math.ceil(ct.roomHeight * kh * pixelScaleModifier);
-                cameraWidth = window.innerWidth / k;
-                cameraHeight = window.innerHeight / k;
-            } else { // scaleFit
-                canvasWidth = Math.ceil(ct.roomWidth * k * pixelScaleModifier);
-                canvasHeight = Math.ceil(ct.roomHeight * k * pixelScaleModifier);
-                cameraWidth = ct.roomWidth;
-                cameraHeight = ct.roomHeight;
-            }
-        }
-
-        ct.pixiApp.renderer.resize(canvasWidth, canvasHeight);
-        if (mode !== 'scaleFill' && mode !== 'scaleFit') {
-            ct.pixiApp.stage.scale.x = ct.pixiApp.stage.scale.y = pixelScaleModifier;
-        } else {
-            ct.pixiApp.stage.scale.x = ct.pixiApp.stage.scale.y = pixelScaleModifier * k;
-        }
-        canv.style.width = Math.ceil(canvasWidth / pixelScaleModifier) + 'px';
-        canv.style.height = Math.ceil(canvasHeight / pixelScaleModifier) + 'px';
-        if (ct.camera) {
-            ct.camera.width = cameraWidth;
-            ct.camera.height = cameraHeight;
-        }
-        positionCanvas(mode, k);
-    };
-    var toggleFullscreen = function () {
-        try {
-            // Are we in Electron?
-            const win = require('electron').remote.BrowserWindow.getFocusedWindow();
-            win.setFullScreen(!win.isFullScreen());
-            return;
-        } catch (e) {
-            void e; // Continue with web approach
-        }
-        var canvas = document.fullscreenElement ||
-                     document.webkitFullscreenElement ||
-                     document.mozFullScreenElement ||
-                     document.msFullscreenElement,
-            requester = document.getElementById('ct'),
-            request = requester.requestFullscreen ||
-                      requester.webkitRequestFullscreen ||
-                      requester.mozRequestFullScreen ||
-                      requester.msRequestFullscreen,
-            exit = document.exitFullscreen ||
-                   document.webkitExitFullscreen ||
-                   document.mozCancelFullScreen ||
-                   document.msExitFullscreen;
-        if (!canvas) {
-            var promise = request.call(requester);
-            if (promise) {
-                promise
-                .catch(function fullscreenError(err) {
-                    console.error('[ct.fittoscreen]', err);
-                });
-            }
-        } else if (exit) {
-            exit.call(document);
-        }
-    };
-    var queuedFullscreen = function queuedFullscreen() {
-        toggleFullscreen();
-        document.removeEventListener('mouseup', queuedFullscreen);
-        document.removeEventListener('keyup', queuedFullscreen);
-        document.removeEventListener('click', queuedFullscreen);
-    };
-    var queueFullscreen = function queueFullscreen() {
-        document.addEventListener('mouseup', queuedFullscreen);
-        document.addEventListener('keyup', queuedFullscreen);
-        document.addEventListener('click', queuedFullscreen);
-    };
-    window.addEventListener('resize', resize);
-    ct.fittoscreen = resize;
-    ct.fittoscreen.toggleFullscreen = queueFullscreen;
-    var $mode = 'scaleFit';
-    Object.defineProperty(ct.fittoscreen, 'mode', {
-        configurable: false,
-        enumerable: true,
-        set(value) {
-            $mode = value;
-        },
-        get() {
-            return $mode;
-        }
-    });
-    ct.fittoscreen.mode = $mode;
-    ct.fittoscreen.getIsFullscreen = function getIsFullscreen() {
-        try {
-            // Are we in Electron?
-            const win = require('electron').remote.BrowserWindow.getFocusedWindow;
-            return win.isFullScreen;
-        } catch (e) {
-            void e; // Continue with web approach
-        }
-        return document.fullscreen || document.webkitIsFullScreen || document.mozFullScreen;
-    };
-})(ct);
 
 (function ctKeyboard() {
     var keyPrefix = 'keyboard.';
@@ -13218,6 +13115,148 @@ if (window.ethereum) {
         }
     };
 })();
+
+(
+  function fittoscreen(ct) {
+    document.body.style.overflow = 'hidden';
+    var canv = ct.pixiApp.view;
+    const positionCanvas = function positionCanvas(mode, scale) {
+        if (mode === 'fastScale' || mode === 'fastScaleInteger') {
+            canv.style.transform = `translate(-50%, -50%) scale(${scale})`;
+            canv.style.position = 'absolute';
+            canv.style.top = '50%';
+            canv.style.left = '50%';
+        } else if (mode === 'expandViewport' || mode === 'expand' || mode === 'scaleFill') {
+            canv.style.position = 'static';
+            canv.style.top = 'unset';
+            canv.style.left = 'unset';
+        } else if (mode === 'scaleFit') {
+            canv.style.transform = 'translate(-50%, -50%)';
+            canv.style.position = 'absolute';
+            canv.style.top = '50%';
+            canv.style.left = '50%';
+        }
+    };
+    var resize = function resize() {
+        const {mode} = ct.fittoscreen;
+        const pixelScaleModifier = ct.highDensity ? (window.devicePixelRatio || 1) : 1;
+        const kw = window.innerWidth / ct.roomWidth,
+              kh = window.innerHeight / ct.roomHeight;
+        let k = Math.min(kw, kh);
+        if (mode === 'fastScaleInteger') {
+            k = k < 1 ? k : Math.floor(k);
+        }
+        var canvasWidth, canvasHeight,
+            cameraWidth, cameraHeight;
+        if (mode === 'expandViewport' || mode === 'expand') {
+            canvasWidth = Math.ceil(window.innerWidth * pixelScaleModifier);
+            canvasHeight = Math.ceil(window.innerHeight * pixelScaleModifier);
+            cameraWidth = window.innerWidth;
+            cameraHeight = window.innerHeight;
+        } else if (mode === 'fastScale' || mode === 'fastScaleInteger') {
+            canvasWidth = Math.ceil(ct.roomWidth * pixelScaleModifier);
+            canvasHeight = Math.ceil(ct.roomHeight * pixelScaleModifier);
+            cameraWidth = ct.roomWidth;
+            cameraHeight = ct.roomHeight;
+        } else if (mode === 'scaleFit' || mode === 'scaleFill') {
+            if (mode === 'scaleFill') {
+                canvasWidth = Math.ceil(ct.roomWidth * kw * pixelScaleModifier);
+                canvasHeight = Math.ceil(ct.roomHeight * kh * pixelScaleModifier);
+                cameraWidth = window.innerWidth / k;
+                cameraHeight = window.innerHeight / k;
+            } else { // scaleFit
+                canvasWidth = Math.ceil(ct.roomWidth * k * pixelScaleModifier);
+                canvasHeight = Math.ceil(ct.roomHeight * k * pixelScaleModifier);
+                cameraWidth = ct.roomWidth;
+                cameraHeight = ct.roomHeight;
+            }
+        }
+
+        ct.pixiApp.renderer.resize(canvasWidth, canvasHeight);
+        if (mode !== 'scaleFill' && mode !== 'scaleFit') {
+            ct.pixiApp.stage.scale.x = ct.pixiApp.stage.scale.y = pixelScaleModifier;
+        } else {
+            ct.pixiApp.stage.scale.x = ct.pixiApp.stage.scale.y = pixelScaleModifier * k;
+        }
+        canv.style.width = Math.ceil(canvasWidth / pixelScaleModifier) + 'px';
+        canv.style.height = Math.ceil(canvasHeight / pixelScaleModifier) + 'px';
+        if (ct.camera) {
+            ct.camera.width = cameraWidth;
+            ct.camera.height = cameraHeight;
+        }
+        positionCanvas(mode, k);
+    };
+    var toggleFullscreen = function () {
+        try {
+            // Are we in Electron?
+            const win = require('electron').remote.BrowserWindow.getFocusedWindow();
+            win.setFullScreen(!win.isFullScreen());
+            return;
+        } catch (e) {
+            void e; // Continue with web approach
+        }
+        var canvas = document.fullscreenElement ||
+                     document.webkitFullscreenElement ||
+                     document.mozFullScreenElement ||
+                     document.msFullscreenElement,
+            requester = document.getElementById('ct'),
+            request = requester.requestFullscreen ||
+                      requester.webkitRequestFullscreen ||
+                      requester.mozRequestFullScreen ||
+                      requester.msRequestFullscreen,
+            exit = document.exitFullscreen ||
+                   document.webkitExitFullscreen ||
+                   document.mozCancelFullScreen ||
+                   document.msExitFullscreen;
+        if (!canvas) {
+            var promise = request.call(requester);
+            if (promise) {
+                promise
+                .catch(function fullscreenError(err) {
+                    console.error('[ct.fittoscreen]', err);
+                });
+            }
+        } else if (exit) {
+            exit.call(document);
+        }
+    };
+    var queuedFullscreen = function queuedFullscreen() {
+        toggleFullscreen();
+        document.removeEventListener('mouseup', queuedFullscreen);
+        document.removeEventListener('keyup', queuedFullscreen);
+        document.removeEventListener('click', queuedFullscreen);
+    };
+    var queueFullscreen = function queueFullscreen() {
+        document.addEventListener('mouseup', queuedFullscreen);
+        document.addEventListener('keyup', queuedFullscreen);
+        document.addEventListener('click', queuedFullscreen);
+    };
+    window.addEventListener('resize', resize);
+    ct.fittoscreen = resize;
+    ct.fittoscreen.toggleFullscreen = queueFullscreen;
+    var $mode = 'scaleFit';
+    Object.defineProperty(ct.fittoscreen, 'mode', {
+        configurable: false,
+        enumerable: true,
+        set(value) {
+            $mode = value;
+        },
+        get() {
+            return $mode;
+        }
+    });
+    ct.fittoscreen.mode = $mode;
+    ct.fittoscreen.getIsFullscreen = function getIsFullscreen() {
+        try {
+            // Are we in Electron?
+            const win = require('electron').remote.BrowserWindow.getFocusedWindow;
+            return win.isFullScreen;
+        } catch (e) {
+            void e; // Continue with web approach
+        }
+        return document.fullscreen || document.webkitIsFullScreen || document.mozFullScreen;
+    };
+})(ct);
 /**
  * @typedef {ITextureOptions}
  * @property {} []
@@ -13384,7 +13423,7 @@ if (window.ethereum) {
 
             const atlases = [["./img/a0.json","./img/a1.json","./img/a2.json","./img/a3.json","./img/a4.json","./img/a5.json","./img/a6.json"]][0];
             const tiledImages = [{"Stars_Big":{"source":"./img/t0.png","shape":{"type":"rect","top":0,"bottom":1024,"left":0,"right":1024},"anchor":{"x":0,"y":0}},"Stars_Small":{"source":"./img/t1.png","shape":{"type":"rect","top":0,"bottom":1024,"left":0,"right":1024},"anchor":{"x":0,"y":0}},"Healthbar_Bar":{"source":"./img/t2.png","shape":{"type":"rect","top":6,"bottom":46,"left":10,"right":42},"anchor":{"x":0.19230769230769232,"y":0.11538461538461539}},"BgSpace":{"source":"./img/t3.png","shape":{"type":"rect","top":600,"bottom":600,"left":1100,"right":1100},"anchor":{"x":0.5,"y":0.5}},"MintShip":{"source":"./img/t4.png","shape":{"type":"rect","top":0,"bottom":768,"left":0,"right":1366},"anchor":{"x":0,"y":0}},"Levels":{"source":"./img/t5.png","shape":{"type":"rect","top":384,"bottom":384,"left":683,"right":683},"anchor":{"x":0.5,"y":0.5}},"InGameBg":{"source":"./img/t6.png","shape":{"type":"rect","top":0,"bottom":600,"left":0,"right":600},"anchor":{"x":0,"y":0}},"Leaderboard":{"source":"./img/t7.png","shape":{"type":"rect","top":384,"bottom":384,"left":683,"right":683},"anchor":{"x":0.5,"y":0.5}},"MyShip":{"source":"./img/t8.png","shape":{"type":"rect","top":0,"bottom":768,"left":0,"right":1366},"anchor":{"x":0,"y":0}}}][0];
-            const sounds = [[{"name":"Laser_Small","wav":false,"mp3":"./snd/684d983f-9827-4ac8-9915-bd498154c5f4.mp3","ogg":false,"poolSize":10,"isMusic":false},{"name":"Laser_Medium","wav":false,"mp3":"./snd/1abe65bd-fd7f-4101-803d-28fa73e21732.mp3","ogg":false,"poolSize":10,"isMusic":false},{"name":"Laser_Big","wav":false,"mp3":"./snd/fe3a3bb6-74ac-4835-b9f3-6c03cf8fd0b0.mp3","ogg":false,"poolSize":5,"isMusic":false},{"name":"Bonus","wav":"./snd/c55e02d8-e533-4126-b0d8-b5164416d0d5.wav","mp3":false,"ogg":false,"poolSize":3,"isMusic":false},{"name":"Explosion_01","wav":"./snd/17ef15ea-b246-474e-9e50-a9211c3281d6.wav","mp3":false,"ogg":false,"poolSize":5,"isMusic":false},{"name":"Explosion_02","wav":"./snd/ba1c4845-8f8e-4326-a3c4-5c7d979d0a98.wav","mp3":false,"ogg":false,"poolSize":5,"isMusic":false},{"name":"Explosion_03","wav":"./snd/8104f996-d422-4157-921f-76e2ffff3b49.wav","mp3":false,"ogg":false,"poolSize":5,"isMusic":false},{"name":"Music_MainMenu","wav":false,"mp3":"./snd/c5397f40-b674-4bfe-a500-91f32466e49b.mp3","ogg":false,"poolSize":1,"isMusic":true},{"name":"SlowmoEffect","wav":false,"mp3":"./snd/db12b1db-1b93-45eb-84f4-a14c131c8ca0.mp3","ogg":false,"poolSize":5,"isMusic":false},{"name":"BlackHole","wav":false,"mp3":"./snd/c8ee5675-8608-40fa-b04e-ad9ccc36c777.mp3","ogg":false,"poolSize":5,"isMusic":false},{"name":"Music_MainTheme","wav":false,"mp3":"./snd/8759a7a8-ffb1-4998-ad6f-ae7300b90d3c.mp3","ogg":false,"poolSize":5,"isMusic":true},{"name":"Music_BossTheme","wav":false,"mp3":"./snd/97158431-4c4f-4f9c-96b9-06da025fb98a.mp3","ogg":false,"poolSize":5,"isMusic":false}]][0];
+            const sounds = [[{"name":"Laser_Small","wav":false,"mp3":"./snd/684d983f-9827-4ac8-9915-bd498154c5f4.mp3","ogg":false,"poolSize":10,"isMusic":false},{"name":"Laser_Medium","wav":false,"mp3":"./snd/1abe65bd-fd7f-4101-803d-28fa73e21732.mp3","ogg":false,"poolSize":10,"isMusic":false},{"name":"Laser_Big","wav":false,"mp3":"./snd/fe3a3bb6-74ac-4835-b9f3-6c03cf8fd0b0.mp3","ogg":false,"poolSize":5,"isMusic":false},{"name":"Bonus","wav":"./snd/c55e02d8-e533-4126-b0d8-b5164416d0d5.wav","mp3":false,"ogg":false,"poolSize":3,"isMusic":false},{"name":"Explosion_01","wav":"./snd/17ef15ea-b246-474e-9e50-a9211c3281d6.wav","mp3":false,"ogg":false,"poolSize":5,"isMusic":false},{"name":"Explosion_02","wav":"./snd/ba1c4845-8f8e-4326-a3c4-5c7d979d0a98.wav","mp3":false,"ogg":false,"poolSize":5,"isMusic":false},{"name":"Explosion_03","wav":"./snd/8104f996-d422-4157-921f-76e2ffff3b49.wav","mp3":false,"ogg":false,"poolSize":5,"isMusic":false},{"name":"SlowmoEffect","wav":false,"mp3":"./snd/db12b1db-1b93-45eb-84f4-a14c131c8ca0.mp3","ogg":false,"poolSize":5,"isMusic":false},{"name":"BlackHole","wav":false,"mp3":"./snd/c8ee5675-8608-40fa-b04e-ad9ccc36c777.mp3","ogg":false,"poolSize":5,"isMusic":false},{"name":"Music_BossTheme","wav":false,"mp3":"./snd/97158431-4c4f-4f9c-96b9-06da025fb98a.mp3","ogg":false,"poolSize":5,"isMusic":false},{"name":"Music_MainMenu","wav":false,"mp3":"./snd/2WT52qK46GnP42.mp3","ogg":false,"poolSize":5,"isMusic":true},{"name":"Music_MainTheme","wav":false,"mp3":"./snd/nHKPjWQ6Fnb4Cj.mp3","ogg":false,"poolSize":5,"isMusic":true}]][0];
             const bitmapFonts = [{}][0];
             const dbSkeletons = [[]][0]; // DB means DragonBones
 
