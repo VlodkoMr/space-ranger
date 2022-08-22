@@ -1193,8 +1193,7 @@ ct.rooms.beforeDraw = function beforeDraw() {
     
 };
 ct.rooms.afterDraw = function afterDraw() {
-    ct.keyboard.clear();
-if (ct.sound.follow && !ct.sound.follow.kill) {
+    if (ct.sound.follow && !ct.sound.follow.kill) {
     ct.sound.howler.pos(
         ct.sound.follow.x,
         ct.sound.follow.y,
@@ -1203,6 +1202,7 @@ if (ct.sound.follow && !ct.sound.follow.kill) {
 } else if (ct.sound.manageListenerPosition) {
     ct.sound.howler.pos(ct.camera.x, ct.camera.y, ct.camera.z || 0);
 }
+ct.keyboard.clear();
 for (const touch of ct.touch.events) {
     touch.xprev = touch.x;
     touch.yprev = touch.y;
@@ -1297,8 +1297,8 @@ this.addChild(this.scoreLabel);
 this.asteroidTimer = ct.speed * 3;
 this.encounterTimer = ct.speed * 5;
 this.waveTimer = ct.speed * 20;
-// this.bomberTimer = ct.speed * 60;
-this.bossTimer = ct.speed * 60 ;
+this.bomberTimer = ct.speed * 60;
+this.bossTimer = ct.speed * 60 * 1.7;
 
 ct.transition.fadeIn();
     },
